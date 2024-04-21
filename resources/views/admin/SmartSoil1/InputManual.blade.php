@@ -4,8 +4,16 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">{{ __('Input Manual') }}</h1>
 
-    <div class="row">
+    @if (session('success'))
+        <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
+    <div class="row">
         <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
@@ -22,7 +30,7 @@
                                 <label for="">Suhu</label>
                                 <input type="text" class="form-control" name="suhu" id="">
                             </div>
-                            
+
                         </div>
 
                         <div class="row">
@@ -34,7 +42,7 @@
                                 <label for="">PH</label>
                                 <input type="text" class="form-control" name="ph" id="">
                             </div>
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -45,7 +53,7 @@
                                 <label for="">Kalium</label>
                                 <input type="text" class="form-control" name="kalium" id="">
                             </div>
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -73,7 +81,8 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-danger" onclick="getPreciseLocation()"> <i class="fas fa-fw fa-map-pin"></i> Ambil Koordinat</button>
+                    <button class="btn btn-danger" onclick="getPreciseLocation()"> <i class="fas fa-fw fa-map-pin"></i>
+                        Ambil Koordinat</button>
                 </div>
             </div>
         </div>
@@ -91,28 +100,25 @@
 @endsection
 
 @push('scripts')
-
-<script>
-    function getPreciseLocation(){
-        // console.log('tes');
-        if(navigator.geolocation){
-            // console.log(navigator.geolocation);
-            navigator.geolocation.getCurrentPosition(showExactPosition)
-        }else{
-            x.innerHTML = "Geolocation is Not Supported "
+    <script>
+        function getPreciseLocation() {
+            // console.log('tes');
+            if (navigator.geolocation) {
+                // console.log(navigator.geolocation);
+                navigator.geolocation.getCurrentPosition(showExactPosition)
+            } else {
+                x.innerHTML = "Geolocation is Not Supported "
+            }
         }
-    }
 
-    function showExactPosition(position){
-        // console.log(position);
-        const latitude = position.coords.latitude;
-        const longtitude = position.coords.longitude;
+        function showExactPosition(position) {
+            // console.log(position);
+            const latitude = position.coords.latitude;
+            const longtitude = position.coords.longitude;
 
-        // console.log(longtitude);
-        document.getElementById("latitude").value = latitude; 
-        document.getElementById("longtitude").value = longtitude; 
-    }
-
-</script>
-
+            // console.log(longtitude);
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longtitude").value = longtitude;
+        }
+    </script>
 @endpush

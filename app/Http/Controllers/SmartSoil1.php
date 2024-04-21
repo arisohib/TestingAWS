@@ -53,8 +53,10 @@ class SmartSoil1 extends Controller
 
         if(Auth::user()->hasRole('superadmin')){
 
+            $url = 'https://4cbpgmyoie.execute-api.ap-southeast-2.amazonaws.com/Development/smartSoil1' ;
+
             $data = [
-                'idsoid' => $request->idsoil,
+                'idsoil' => $request->idsoil,
                 'Suhu' => $request->suhu,
                 'Soil Moisture' => $request->soilmoisture,
                 'PH' => $request->ph,
@@ -64,9 +66,31 @@ class SmartSoil1 extends Controller
                 'Fosfor' => $request->fosfor,
                 'Lattitude' => $request->latitude,
                 'Longtitude' => $request->longitude,
-            ];
+            ];  
 
-            // dd($data);
+            $data_matang = json_encode($data);
+
+            // dd($data_matang);
+
+            $post = Http::asForm()->withBody($data_matang,'application/json')->post($url);
+
+            // dd($post);
+
+            $hasil_respon = $post->body();
+
+            // dd($hasil_respon);
+
+            $respon_php = json_decode($hasil_respon);
+
+            // dd($respon_php);
+
+            if($respon_php->Message == 'SUCCESS'){
+
+                return redirect()->back()->with('success','Data Berhasil ditambahkan');
+
+            }else{
+                return redirect()->back()->with('error','Data gagal ditambahkan');
+            }
 
         }   
 
