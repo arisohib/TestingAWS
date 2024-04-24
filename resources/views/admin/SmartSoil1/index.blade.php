@@ -19,7 +19,6 @@
         </div>
     @endif
 
-
     <div class="card mt-3">
         <div class="card-header">
             <h6 class="m-0 font-weight-bold text-primary">Grafik Smart Soil 1</h6>

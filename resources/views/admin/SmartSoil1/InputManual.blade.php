@@ -13,6 +13,8 @@
         </div>
     @endif
 
+    <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
+
     <div class="row">
         <div class="col-md-7">
             <div class="card">
