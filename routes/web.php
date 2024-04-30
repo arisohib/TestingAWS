@@ -42,6 +42,10 @@ Route::group(['middleware' => ['guest']], function () {
 // Route::post('loginPost', [LoginController::class, 'login'])->name('login');
 
 Route::get('/', [SmartSoil1::class, 'indexHome'])->name('indexHome');
+Route::get('InputSmartSoil',[SmartSoil1::class,'tambahData'])->name('input.smartsoil1');
+Route::post('StoreDataSmartSoil',[SmartSoil1::class, 'StoreDataDatabase'])->name('store.data');
+
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'Superadmin', 'middleware' => ['auth', 'role:superadmin']], function () {
@@ -62,8 +66,8 @@ Route::group(['prefix' => 'Superadmin', 'middleware' => ['auth', 'role:superadmi
 
     //SmartSoil
     Route::get('SmartSoil1',[SmartSoil1::class,'index'])->name('smartsoil1.index');
-    Route::get('InputSmartSoil',[SmartSoil1::class,'InputManual'])->name('input.smartsoil1');
-    Route::post('StoreDataSmartSoil',[SmartSoil1::class, 'storeData'])->name('store.data');
+    // Route::get('InputSmartSoil',[SmartSoil1::class,'InputManual'])->name('input.smartsoil1');
+    // Route::post('StoreDataSmartSoil',[SmartSoil1::class, 'storeData'])->name('store.data');
     
     Route::get('SmartSoil2',[SmartSoil1::class,'index2'])->name('smartsoil2.index');
 
