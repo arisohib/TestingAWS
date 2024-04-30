@@ -15,7 +15,11 @@ class SmartSoil1 extends Controller
 
             $url = 'https://4cbpgmyoie.execute-api.ap-southeast-2.amazonaws.com/Development/AllDataSmartSoil';
 
+            // dd($url);
+
             $data = Http::get($url)->body();
+
+            // dd($data);
 
             // dd(json_decode($data));
 
@@ -91,10 +95,41 @@ class SmartSoil1 extends Controller
             }else{
                 return redirect()->back()->with('error','Data gagal ditambahkan');
             }
-
         }   
 
     }
+
+
+    public function indexHome(){
+
+        $url = 'https://4cbpgmyoie.execute-api.ap-southeast-2.amazonaws.com/Development/AllDataSmartSoil';
+
+            // dd($url);
+
+            $data = Http::get($url)->body();
+
+            // dd($data);
+
+            // dd(json_decode($data));
+
+            $datasoil = json_decode($data);
+            // dd($datasoil);
+
+            foreach($datasoil as $data2){
+                $suhu[] = $data2->Suhu;
+                $ph[] = $data2->PH;
+                $nitrogen[] = $data2->Nitrogen;
+                $kalium[] = $data2->Kalium;
+                $ec[] = $data2->EC;
+                $fosfor[] = $data2->Fosfor;
+                // dd($suhu);
+            }
+
+            // dd($nitrogen);
+
+            return view('admin.SmartSoil1.index',compact('datasoil','suhu','ph','nitrogen','kalium','ec','fosfor'));
+    }    
+
 
     public function index2(){
 

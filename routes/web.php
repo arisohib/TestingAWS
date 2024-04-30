@@ -34,12 +34,14 @@ Route::group(['middleware' => ['guest']], function () {
     /**
      * Login Routes
      */
-    Route::get('/', [LoginController::class, 'showLoginForm'])->name('loginform');
+    // Route::get('/', [LoginController::class, 'showLoginForm'])->name('loginform');
     Route::post('loginPost', [LoginController::class, 'login'])->name('login');
 });
 
 // Route::get('/', [LoginController::class, 'showLoginForm'])->name('loginform');
 // Route::post('loginPost', [LoginController::class, 'login'])->name('login');
+
+Route::get('/', [SmartSoil1::class, 'indexHome'])->name('indexHome');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'Superadmin', 'middleware' => ['auth', 'role:superadmin']], function () {
