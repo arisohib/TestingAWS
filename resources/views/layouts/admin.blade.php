@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('smart.irrigation') }}">
                     <i class="fas fa-fw fa-bucket"></i>
                     <span>{{ __('Smart Irigation') }}</span>
                 </a>

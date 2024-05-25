@@ -3,13 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KinerjaController;
-use App\Http\Controllers\PengukuranController;
-use App\Http\Controllers\AssetMenuController;
-use App\Http\Controllers\WorkOrderController;
-use App\Http\Controllers\KomisioningController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SmartSoil1;
+use App\Http\Controllers\SmartIrrigation;
+use App\Http\Controllers\SmartWeather;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,24 +42,15 @@ Route::get('/', [SmartSoil1::class, 'indexHome'])->name('indexHome');
 Route::get('InputSmartSoil',[SmartSoil1::class,'tambahData'])->name('input.smartsoil1');
 Route::post('StoreDataSmartSoil',[SmartSoil1::class, 'StoreDataDatabase'])->name('store.data');
 
+//Irrigation
+Route::get('SmartIrrigation',[SmartIrrigation::class,'index'])->name('smart.irrigation');
+
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'Superadmin', 'middleware' => ['auth', 'role:superadmin']], function () {
 
     Route::get('Dahsboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('Pengukuran', [PengukuranController::class, 'index'])->name('pengukuran');
-    Route::get('Kinerja', [KinerjaController::class, 'index'])->name('kinerja');
-    Route::get('WorkOrder', [WorkOrderController::class, 'index'])->name('WOIndex');
-    Route::get('AssetKeypoint', [AssetMenuController::class, 'index'])->name('AssetMenu');
-    Route::get('RTU', [AssetMenuController::class, 'RTU'])->name('rtu');
-    Route::get('Rectifier', [AssetMenuController::class, 'rectifier'])->name('rectifier');
-    Route::get('Battery', [AssetMenuController::class, 'Battere'])->name('battery');
-    Route::get('Server', [AssetMenuController::class, 'server'])->name('server');
-    Route::get('Gateway', [AssetMenuController::class, 'gateway'])->name('gateway');
-    Route::get('Radio', [AssetMenuController::class, 'radio'])->name('radio');
-    Route::get('DataTagging', [AssetMenuController::class, 'tagging'])->name('tagging');
-    Route::get('Komisioning', [KomisioningController::class, 'index'])->name('Komisioning');
 
     //SmartSoil
     Route::get('SmartSoil1',[SmartSoil1::class,'index'])->name('smartsoil1.index');
