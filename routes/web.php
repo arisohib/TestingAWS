@@ -31,7 +31,6 @@ Route::group(['middleware' => ['guest']], function () {
     /**
      * Login Routes
      */
-    // Route::get('/', [LoginController::class, 'showLoginForm'])->name('loginform');
     Route::post('loginPost', [LoginController::class, 'login'])->name('login');
 });
 
@@ -45,6 +44,9 @@ Route::post('StoreDataSmartSoil',[SmartSoil1::class, 'StoreDataDatabase'])->name
 //Irrigation
 Route::get('SmartIrrigation',[SmartIrrigation::class,'index'])->name('smart.irrigation');
 
+//Weather
+Route::get('SmartWeatherAgriculture',[SmartWeather::class,'Agriculture'])->name('smart.weather.agriculture');
+Route::get('SmartWeatherSAR',[SmartWeather::class,'SAR'])->name('smart.weather.sar');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

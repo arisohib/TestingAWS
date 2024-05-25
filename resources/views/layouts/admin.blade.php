@@ -80,9 +80,16 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('smart.weather.agriculture') }}">
                     <i class="fas fa-fw fa-cloud-rain"></i>
-                    <span>{{ __('Smart Weather') }}</span>
+                    <span>{{ __('Smart Weather Agriculture') }}</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('smart.weather.sar') }}">
+                    <i class="fas fa-fw fa-cloud-rain"></i>
+                    <span>{{ __('Smart Weather SAR') }}</span>
                 </a>
             </li>
 
