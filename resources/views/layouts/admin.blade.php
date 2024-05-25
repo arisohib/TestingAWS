@@ -61,14 +61,14 @@
             <li class="nav-item {{ Nav::isRoute('indexHome') }}">
                 <a class="nav-link" href="{{ route('indexHome') }}">
                     <i class="fas fa-fw fa-kiwi-bird"></i>
-                    <span>{{ __('Smart Agriculture') }}</span>
+                    <span>{{ __('Smart Agriculture 7in1') }}</span>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('index.npk') }}">
                     <i class="fas fa-fw fa-kiwi-bird"></i>
-                    <span>{{ __('Smart Soil') }}</span>
+                    <span>{{ __('Smart Agriculture NPK ') }}</span>
                 </a>
             </li>
 

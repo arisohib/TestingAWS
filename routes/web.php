@@ -41,6 +41,8 @@ Route::get('/', [SmartSoil1::class, 'indexHome'])->name('indexHome');
 Route::get('InputSmartSoil',[SmartSoil1::class,'tambahData'])->name('input.smartsoil1');
 Route::post('StoreDataSmartSoil',[SmartSoil1::class, 'StoreDataDatabase'])->name('store.data');
 
+Route::get('/NPK', [SmartSoil1::class, 'NPK'])->name('index.npk');
+
 //Irrigation
 Route::get('SmartIrrigation',[SmartIrrigation::class,'index'])->name('smart.irrigation');
 

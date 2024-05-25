@@ -100,7 +100,7 @@ class SmartSoil1 extends Controller
     public function indexHome()
     {
 
-        $url = 'https://4cbpgmyoie.execute-api.ap-southeast-2.amazonaws.com/Development/AllDataSmartSoil';
+        $url = 'https://mhj6nk8m26.execute-api.ap-southeast-2.amazonaws.com/Development/AllDataSmartSoil';
 
         // dd($url);
 
@@ -114,12 +114,12 @@ class SmartSoil1 extends Controller
         // dd($datasoil);
 
         foreach ($datasoil as $data2) {
-            $suhu[] = $data2->Suhu;
-            $ph[] = $data2->PH;
-            $nitrogen[] = $data2->Nitrogen;
-            $kalium[] = $data2->Kalium;
-            $ec[] = $data2->EC;
-            $fosfor[] = $data2->Fosfor;
+            $suhu[] = $data2->temperature;
+            $ph[] = $data2->ph;
+            $nitrogen[] = $data2->nitrogen;
+            $kalium[] = $data2->kalium;
+            $ec[] = $data2->conductivity;
+            $fosfor[] = $data2->fosfor;
             // dd($suhu);
         }
 
@@ -173,6 +173,32 @@ class SmartSoil1 extends Controller
         } else {
             return redirect()->back()->with('error', 'Data gagal ditambahkan');
         }
+    }
+
+    public function NPK(){
+
+        $url = 'https://mhj6nk8m26.execute-api.ap-southeast-2.amazonaws.com/Development/NPK';
+
+        // dd($url);
+
+        $data = Http::get($url)->body();
+
+        $datanpk = json_decode($data);
+        // dd($dataWeather);
+
+        foreach ($datanpk as $data2) {
+            $ph[] = $data2->ph;
+            $nitrogen[] = $data2->nitrogen;
+            $kalium[] = $data2->kalium;
+            $kelembapan[] = $data2->kelembapan;
+            $fosfor[] = $data2->phosporus;
+            // dd($suhu);
+        }
+
+
+        return view('admin.SmartSoil1.IndexNPK', compact('datanpk', 'ph', 'nitrogen', 'kalium', 'kelembapan', 'fosfor'));
+
+
     }
 
 

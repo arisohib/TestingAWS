@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Smart Soil 7IN1') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Smart Soil NPK') }}</h1>
 
     @if (session('success'))
         <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -40,12 +40,10 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Suhu</th>
                             <th>Soil Moisture</th>
                             <th>PH</th>
                             <th>Nitrogen</th>
                             <th>Kalium</th>
-                            <th>EC</th>
                             <th>Fosfor</th>
                             <th>Latitude</th>
                             <th>Longtitude</th>
@@ -55,16 +53,14 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($datasoil as $data )
+                        @foreach ($datanpk as $data )
                             <tr>
                                 <td>{{ $data->TS }}</td>
-                                <td>{{ number_format((float)$data->temperature, 2, '.', '')  }}</td>
-                                <td>{{ number_format((float)$data->moisture, 2, '.', '') }}</td>
-                                <td>{{ number_format((float)$data->ph, 2, '.', '')  }}</td>
-                                <td>{{ $data->nitrogen }}</td>
+                                <td>{{ number_format((float)$data->kelembapan, 2, '.', '')  }}</td>
+                                <td>{{ number_format((float)$data->ph, 2, '.', '') }}</td>
+                                <td>{{ number_format((float)$data->nitrogen, 2, '.', '')  }}</td>
                                 <td>{{ $data->kalium }}</td>
-                                <td>{{ $data->conductivity }}</td>
-                                <td>{{ $data->fosfor }}</td>
+                                <td>{{ $data->phosporus }}</td>
                                 <td>{{ $data->latitude }}</td>
                                 <td>{{ $data->longitude }}</td>
                                 <td>{{ $data->TimeStamp }}</td>
@@ -93,14 +89,7 @@
             type: 'line',
             data: {
                 labels: ["0", "1", "2", "3", "4", "5","6","7","8"],
-                datasets: [{
-                        label: 'Suhu', // Name the series
-                        data: @json($suhu), // Specify the data values array
-                        fill: false,
-                        borderColor: '#ffd000', // Add custom color border (Line)
-                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
-                        borderWidth: 3 // Specify bar border width
-                    },
+                datasets: [
                     {
                         label: 'PH',
                         data: @json($ph),
@@ -126,8 +115,8 @@
                         borderWidth: 3 // Specify bar border width
                     },
                     {
-                        label: 'EC',
-                        data: @json($ec),
+                        label: 'Kelembapan',
+                        data: @json($kelembapan),
                         fill: false,
                         borderColor: '#00FFEC', // Add custom color border (Line)
                         backgroundColor: '#00FFEC', // Add custom color background (Points and Fill)
