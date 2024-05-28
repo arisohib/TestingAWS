@@ -100,6 +100,13 @@ class SmartSoil1 extends Controller
     public function indexHome()
     {
 
+        $suhu = [];
+        $ph = [];
+        $nitrogen = [];
+        $kalium[] = [];
+        $ec[] = [];
+        $fosfor[] = [];
+
         $url = 'https://mhj6nk8m26.execute-api.ap-southeast-2.amazonaws.com/Development/AllDataSmartSoil';
 
         // dd($url);
@@ -113,15 +120,20 @@ class SmartSoil1 extends Controller
         $datasoil = json_decode($data);
         // dd($datasoil);
 
-        foreach ($datasoil as $data2) {
-            $suhu[] = $data2->temperature;
-            $ph[] = $data2->ph;
-            $nitrogen[] = $data2->nitrogen;
-            $kalium[] = $data2->kalium;
-            $ec[] = $data2->conductivity;
-            $fosfor[] = $data2->fosfor;
-            // dd($suhu);
+        if (!empty($datasoil)) {
+
+            foreach ($datasoil as $data2) {
+                $suhu[] = $data2->temperature;
+                $ph[] = $data2->ph;
+                $nitrogen[] = $data2->nitrogen;
+                $kalium[] = $data2->kalium;
+                $ec[] = $data2->conductivity;
+                $fosfor[] = $data2->fosfor;
+                // dd($suhu);
+            }
         }
+
+
 
         // dd($nitrogen);
 
@@ -175,7 +187,14 @@ class SmartSoil1 extends Controller
         }
     }
 
-    public function NPK(){
+    public function NPK()
+    {
+
+        $ph = [];
+        $nitrogen = [];
+        $kalium = [];
+        $kelembapan = [];
+        $fosfor = [];
 
         $url = 'https://mhj6nk8m26.execute-api.ap-southeast-2.amazonaws.com/Development/NPK';
 
@@ -186,19 +205,20 @@ class SmartSoil1 extends Controller
         $datanpk = json_decode($data);
         // dd($dataWeather);
 
-        foreach ($datanpk as $data2) {
-            $ph[] = $data2->ph;
-            $nitrogen[] = $data2->nitrogen;
-            $kalium[] = $data2->kalium;
-            $kelembapan[] = $data2->kelembapan;
-            $fosfor[] = $data2->phosporus;
-            // dd($suhu);
+
+        if (!empty($datanpk)) {
+
+            foreach ($datanpk as $data2) {
+                $ph[] = $data2->ph;
+                $nitrogen[] = $data2->nitrogen;
+                $kalium[] = $data2->kalium;
+                $kelembapan[] = $data2->kelembapan;
+                $fosfor[] = $data2->phosporus;
+                // dd($suhu);
+            }
         }
 
-
         return view('admin.SmartSoil1.IndexNPK', compact('datanpk', 'ph', 'nitrogen', 'kalium', 'kelembapan', 'fosfor'));
-
-
     }
 
 
